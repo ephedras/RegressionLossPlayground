@@ -29,10 +29,6 @@ def huberized_q_loss(pred, true, delta=1.0, q=0.5):
   hloss = huber_loss(pred, true, delta)
   return np.where(true > pred, q * hloss, (1 - q) * hloss)
 
-# Define WHL function 
-def whl(pred, true, delta=1.0,alpha =1.0, beta=1.0):
-  hloss = huber_loss(pred, true, delta)
-  return np.where(true>pred,  alpha * hloss, beta * hloss)
 
 # Define Log Loss function (for binary classification)
 def log_loss(pred, true):
@@ -68,11 +64,6 @@ delta = delta_col.slider("Huber Loss - delta", min_value=0.1, max_value=2.0, val
 q = q_col.slider("Quantile Loss - q", min_value=0.1, max_value=0.9, value=0.5, step=0.1) if "Quantile Loss" in selected_loss_functions else None
 hq_delta = hq_delta_col.slider("Huberized Q - delta", min_value=0.1, max_value=2.0, value=1.0, step=0.1) if "Huberized Q-Loss" in selected_loss_functions else None
 hq_q = hq_q_col.slider("Huberized Q - q", min_value=0.1, max_value=0.9, value=0.5, step=0.1) if "Huberized Q-Loss" in selected_loss_functions else None
-whl_delta = whl_delta_col.slider("WHL - delta", min_value=0.1, max_value=2.0, value=1.0, step=0.1) if "WHL" in selected_loss_functions else None
-whl_alpha = whl_alpha_col.slider("WHL - alpha", min_value=0.1, max_value=2.0, value=1.0, step=0.1) if "WHL" in selected_loss_functions else None
-whl_beta = whl_beta_col.slider("WHL - beta", min_value=0.1, max_value=2.0, value=1.0, step=0.1) if "WHL" in selected_loss_functions else None
-# ll_disabled = ll_col.slider("Log Loss", min_value=0.0, max_value=1.0, disabled=True)  # Disable for non-binary classification
-# kl_disabled = kl_col.slider("KL Divergence", min_value=0.0, max_value=5.0, disabled=True)  # Disable for non-probability distributions
 
 # Generate predicted values
 pred_values = np.linspace(-2, 2, 400)
@@ -94,10 +85,6 @@ for function_name in selected_loss_functions:
     loss = mse_loss(pred_values, true_value)
   elif function_name == "Mean Absolute Error":
     loss = mae_loss(pred_values, true_value)
-  elif function_name == "WHL":
-    loss = whl(pred_values, true_value, whl_delta, whl_alpha, whl_beta)  # Assuming binary classification here
-  elif function_name == "KL Divergence":
-    loss = kl_divergence(pred_values, true_value)  # Assuming probability distributions
   else:
     continue  # Skip unsupported functions
   loss_values.append(loss)

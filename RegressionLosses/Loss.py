@@ -41,7 +41,7 @@ def kl_divergence(pred, true):
   return true * np.log(true / (pred + epsilon)) + (1 - true) * np.log((1 - true) / (1 - pred + epsilon))
 
 
-st.set_page_config(page_title="Loss Function Playground",page_icon='.\logo\icon_clear.png')
+st.set_page_config(page_title="Loss Function Playground",page_icon=r'.\logo\icon_clear.png')
 
 #logo
 st.sidebar.image('icon_clear.png')

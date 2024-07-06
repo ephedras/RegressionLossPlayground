@@ -44,8 +44,8 @@ def kl_divergence(pred, true):
 st.set_page_config(page_title="Loss Function Playground",page_icon='.\logo\icon_clear.png')
 
 #logo
-st.sidebar.image('.\logo\icon_clear.png')
-st.sidebar.image(".\logo\logo_clear.png")
+st.sidebar.image('icon_clear.png')
+st.sidebar.image("logo_clear.png")
 
 
 # Streamlit app layout

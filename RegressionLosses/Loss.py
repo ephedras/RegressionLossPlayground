@@ -44,7 +44,7 @@ def kl_divergence(pred, true):
 st.set_page_config(page_title="Loss Function Playground",page_icon='icon_clear.png')
 
 #logo
-st.sidebar.image("logo_clear.png")
+st.sidebar.image("logo_clear.png", use_column_width=True)
 
 # Add custom CSS to hide the GitHub icon
 hide_github_icon = """

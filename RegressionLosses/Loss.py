@@ -44,9 +44,15 @@ def kl_divergence(pred, true):
 st.set_page_config(page_title="Loss Function Playground",page_icon='icon_clear.png')
 
 #logo
-
 st.sidebar.image("logo_clear.png")
 
+# Add custom CSS to hide the GitHub icon
+hide_github_icon = """
+#GithubIcon {
+  visibility: hidden;
+}
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
 
 # Streamlit app layout
 st.title("Loss Function Selector")
